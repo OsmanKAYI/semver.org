@@ -58,9 +58,30 @@ Bu belge içindeki anahtar sözcükler ve/veya eklerinden oluşan "-MALI", "-MEL
 
 10. Derleme üst verisi, yama sürümünü veya ön-sunum sürümünü hemen takip ederek eklenen bir artı işaretiyle ve bir dizi nokta ayracıyla GÖSTERİLEBİLİR. Tanımlayıcılar yalnızca ASCII alfasayısal ve tire işaretlerinden [0-9A-Za-z-] OLUŞMALIDIR. Tanımlayıcılar boş OLMAMALIDIR. Derleme üstverisi sürüm önceliği belirlenirken dikkate ALINMAMALIDIR. Böylece, yalnızca derleme üstverisiyle farklılık gösteren iki sürüm de aynı önceliğe sahip olacaktır. Örnekler: 1.0.0-ilk+001, 1.0.0+20130313144700, 1.0.0-ikincil+deneme.sha.5114f85.
 
-11. Öncelik, sürümlerin sıralandıklarında, birbirleriyle sıralarının nasıl karşılaştırılacaklarını belirtir. Öncelik sürüm numarası büyük, küçük, yama ve ön-sunum tanımlayıcılarıyla, burada yazıldığı sırada (Derleme üstverisi öncelik belirlenirken anlamsızdır) ayırarak HESAPLANMALIDIR. Öncelik, soldan sağa doğru tanımlayıcıların her birini şu şekilde karşılaştırırken belirlenir: Büyük, küçük, ve yama sürümleri daima sayısal olarak karşılaştırılır. Örnek: 1.0.0 < 2.0.0 < 2.1.0 < 2.1.1. Büyük, küçük, ve yama eşit olduğunda, bir ön-sunum sürümü, normal bir sürümden daha düşük önceliğe sahiptir. Örnek: 1.0.0-ilk < 1.0.0.  Aynı büyük, küçük, ve yama sürümüne sahip iki ön-sunum sürümünün önceliği, şu şekilde gösterildiği gibi, soldan sağa doğru her bir tanımlayıcıyı ayırıp karşılaştırarak BELİRLENMELİDİR: yalnızca rakamlardan oluşan tanımlayıcılar sayısal olarak karşılaştırılır ve harfli veya tire çizgili tanımlayıcılar ise ASCII sözcük sıralamalarına göre karşılaştırılırlar. Sayısal tanımlayıcılar, sayısal-olmayan tanımlayıcılardan daima daha düşük önceliğe sahiptirler.
+11. Öncelik, sürümlerin birbirleriyle karşılaştırıldığında sıralandığı bir kavramı ifade eder.
 
-Önce gelen tüm tanımlayıcıları eşitse, büyük bir dizi ön-sunumun alanlarının, daha küçük bir dizininkinden daha yüksek önceliği vardır. Örnek: 1.0.0-ilk < 1.0.0-ilk.1 < 1.0.0-ilk.ikincil < 1.0.0-ikincil < 1.0.0-ikincil.2 < 1.0.0-ikincil.11 < 1.0.0-sa.1 < 1.0.0.
+    1. Öncelik, sürümü her zaman şu sırayla major (büyük), minor (küçük), patch (düzeltme) ve ön-sürüm (pre-release) tanımlayıcılarına ayırarak hesaplanmalıdır (Yapı meta verisi öncelikte rol oynamaz).
+
+    2. Öncelik, her bir tanımlayıcıyı soldan sağa karşılaştırırken, her birindeki ilk farka göre belirlenir: Major (büyük), minor (küçük) ve patch (düzeltme) sürümleri her zaman sayısal olarak karşılaştırılır.
+
+    Örnek: 1.0.0 < 2.0.0 < 2.1.0 < 2.1.1.
+
+    3. Major, minor ve patch eşit olduğunda, ön-sürüm sürümü normal bir sürümden daha düşük önceliğe sahiptir:
+
+    Örnek: 1.0.0-alpha < 1.0.0.
+
+    4. Aynı major, minor ve patch sürüme sahip iki ön-sürüm sürümün önceliği, her bir nokta ile ayrılmış tanımlayıcıyı soldan sağa karşılaştırarak belirlenmelidir:
+
+        1. Sadece rakamlardan oluşan tanımlayıcılar sayısal olarak karşılaştırılır.
+
+        2. Harf veya tire içeren tanımlayıcılar ASCII sıralama düzenine göre leksik olarak karşılaştırılır.
+
+        3. Sayısal tanımlayıcılar her zaman sayısal olmayan tanımlayıcılardan daha düşük önceliğe sahiptir.
+
+        4. Önceki tanımlayıcılar eşitse, daha büyük bir ön-sürüm alanı, daha küçük bir setten daha yüksek önceliğe sahiptir.
+
+        Örnek: 1.0.0-alpha < 1.0.0-alpha.1 < 1.0.0-alpha.beta < 1.0.0-beta < 1.0.0-beta.2 < 1.0.0-beta.11 < 1.0.0-rc.1 < 1.0.0.
+
 
 Anlamsal Sürümlendirme Neden Kullanılmalıdır?
 ---------------------------------------------
