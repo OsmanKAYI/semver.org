@@ -62,6 +62,72 @@ Bu belge içindeki anahtar sözcükler ve/veya eklerinden oluşan "-MALI", "-MEL
 
 Önce gelen tüm tanımlayıcıları eşitse, büyük bir dizi ön-sunumun alanlarının, daha küçük bir dizininkinden daha yüksek önceliği vardır. Örnek: 1.0.0-ilk < 1.0.0-ilk.1 < 1.0.0-ilk.ikincil < 1.0.0-ikincil < 1.0.0-ikincil.2 < 1.0.0-ikincil.11 < 1.0.0-sa.1 < 1.0.0.
 
+# Geçerli SemVer Sürümleri için Backus-Naur Form Dilbilgisi
+---------------------------------------------
+
+```
+<geçerli semver> ::= <sürüm çekirdek>
+                 | <sürüm çekirdek> "-" <ön-sürüm>
+                 | <sürüm çekirdek> "+" <derle>
+
+<sürüm çekirdek> ::= <büyük> "." <küçük> "." <yama>
+
+<büyük> ::= <sayısal tanımlayıcı>
+
+<küçük> ::= <sayısal tanımlayıcı>
+
+<yama> ::= <sayısal tanımlayıcı>
+
+<ön-sürüm> ::= <nokta ile ayrılmış ön-sürüm tanımlayıcıları>
+
+<nokta ile ayrılmış ön-sürüm tanımlayıcıları> ::= <ön-sürüm tanımlayıcı>
+                                          | <ön-sürüm tanımlayıcı> "." <nokta ile ayrılmış ön-sürüm tanımlayıcıları>
+
+<derle> ::= <nokta ile ayrılmış derle tanımlayıcıları>
+
+<nokta ile ayrılmış derle tanımlayıcıları> ::= <derle tanımlayıcı>
+                                    | <derle tanımlayıcı> "." <nokta ile ayrılmış derle tanımlayıcıları>
+
+<ön-sürüm tanımlayıcı> ::= <alfasayısal tanımlayıcı>
+                           | <sayısal tanımlayıcı>
+
+<derle tanımlayıcı> ::= <alfasayısal tanımlayıcı>
+                     | <rakamlar>
+
+<alfasayısal tanımlayıcı> ::= <sayı olmayan>
+                            | <sayı olmayan> <tanımlayıcı karakterler>
+                            | <tanımlayıcı karakterler> <sayı olmayan>
+                            | <tanımlayıcı karakterler> <sayı olmayan> <tanımlayıcı karakterler>
+
+<sayısal tanımlayıcı> ::= "0"
+                       | <pozitif rakam>
+                       | <pozitif rakam> <rakamlar>
+
+<tanımlayıcı karakterleri> ::= <tanımlayıcı karakteri>
+                          | <tanımlayıcı karakteri> <tanımlayıcı karakterleri>
+
+<tanımlayıcı karakteri> ::= <rakam>
+                         | <sayı olmayan>
+
+<sayı olmayan> ::= <harf>
+              | "-"
+
+<rakamlar> ::= <rakam>
+           | <rakam> <rakamlar>
+
+<rakam> ::= "0"
+          | <pozitif rakam>
+
+<pozitif rakam> ::= "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+
+<harf> ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
+           | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
+           | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d"
+           | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n"
+           | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x"
+           | "y" | "z"
+```
+
 Anlamsal Sürümlendirme Neden Kullanılmalıdır?
 ---------------------------------------------
 
